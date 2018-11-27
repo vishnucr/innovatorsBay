@@ -1,0 +1,37 @@
+The resultant response is in JSON format.
+
+On top of the page, there should be mat-tab with refresh option which has a label and corresponding request-URL as following
+
+1) Business | URL: https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=c706b32c0ef04d218bee42f16b7cb2f4
+
+2) TechCrunch | URL: https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=c706b32c0ef04d218bee42f16b7cb2f4
+
+3) Apple | URL: https://newsapi.org/v2/everything?q=apple&from=2018-03-20&to=2018-03-20&sortBy=popularity&apiKey=c706b32c0ef04d218bee42f16b7cb2f4
+
+4) Wall-Street Journal | URL: https://newsapi.org/v2/everything?domains=wsj.com&apiKey=c706b32c0ef04d218bee42f16b7cb2f4
+
+All the tabs should be lazy loaded i.e. when a tab is opened for the first time the data is loaded and then it persists. It can only be refreshed by clicking the refresh button.
+
+After receiving the response it should render the articles in card layout (mat-card must be used for this). In each card, it should contain:
+
+1) An image
+
+2) A title of the article
+
+3) Name of the publisher which follows the title of the article
+
+4) Description of article clipped to a maximum of 3 lines
+
+Necessary Requirements
+
+All components on the page should be nicely padded and the page should be responsive. Code must be modular with well-defined components and structure.
+
+Bonus points
+
+Any customization that you can make to improve usability/experience of the application.
+
+How to share the code
+
+Option 1: Post a repository with your github account and share the link with us for this web-app. There should be a Readme file which lists commands/procedure to run the code.
+
+Option 2: Zip all the files in appropriate structure along with an instructions file which lists commands/procedure to run the code and attach as a solution to this question.
