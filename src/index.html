@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Innovators Bay</title>
+    <link rel="stylesheet" href="css/bundle.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+</head>
+
+<body class="ng-cloak" ng-controller="main_ctrl as vm">
+    <!-- LOADER -->
+    <div ng-show="vm.loader"  class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div>
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                <!-- BUSINESS -->
+                <md-tab md-on-select="vm.get_news('business')">
+                    <md-tab-label>
+                        <p class="pos-rlt">
+                            <span hide-sm hide-xs show-gt-sm>Business</span>
+                            <i hide-sm hide-xs show-gt-sm class="refresh fa fa-refresh" ng-click="vm.refresh('business')"></i>
+                            <i hide-gt-sm class="fa fa-dollar"></i>
+                        </p>
+                    </md-tab-label>
+                    <md-tab-body class="md-padding" >
+                        <md-content class="md-padding" layout-gt-xs="column" layout-gt-sm="row"  layout-wrap>
+                                <p ng-show="vm.portals.business.news.length == 0">Nothing here...</p>
+                            <div class="custom-card" ng-repeat="news in vm.portals.business.news" flex-gt-sm="25" flex-gt-xs="100" flex-xs="100">
+                                <md-card >
+                                    <div class="custom-card-image">
+                                        <img ng-src="{{ news.urlToImage == null? 'images/noimage.png' : news.urlToImage }}" class="md-card-image">
+                                    </div>
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <p class="custom-title">
+                                                <a class="md-title"  href="{{news.url}}">
+                                                    <span ng-bind="news.title"></span>
+                                                </a>
+                                                <small class="block">
+                                                    Author: 
+                                                    {{ news.author? news.author: "None"}}
+                                                </small>
+                                            </p>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <p class="md-body-1 custom-body">
+                                            {{ news.content | limitTo: 180 }}    
+                                            ...
+                                        </p>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab-body>
+                </md-tab>
+
+                <!-- TECHCRUNCH -->
+                <md-tab md-on-select="vm.get_news('techcrunch')">
+                    <md-tab-label>
+                        <p class="pos-rlt">
+                            <span hide-sm hide-xs show-gt-sm>TechCrunch</span>
+                            <i hide-sm hide-xs show-gt-sm class="refresh fa fa-refresh" ng-click="vm.refresh('techcrunch')"></i>
+                            <i hide-gt-sm class="fa fa-tumblr"></i>
+                        </p>
+                    </md-tab-label>
+                    <md-tab-body class="md-padding">
+                        <md-content class="md-padding" layout-gt-xs="column" layout-gt-sm="row"  layout-wrap>
+                                <p ng-show="vm.portals.techcrunch.news.length == 0">Nothing here...</p>
+                            <div class="custom-card" ng-repeat="news in vm.portals.techcrunch.news" flex-gt-sm="25" flex-gt-xs="100" flex-xs="100">
+                                <md-card >
+                                    <div class="custom-card-image">
+                                        <img ng-src="{{ news.urlToImage == null? 'images/noimage.png' : news.urlToImage }}" class="md-card-image">
+                                    </div>
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <p class="custom-title">
+                                                <a class="md-title"  href="{{news.url}}">
+                                                    <span ng-bind="news.title"></span>
+                                                </a>
+                                                <small class="block">
+                                                    Author: 
+                                                    {{ news.author? news.author: "None"}}
+                                                </small>
+                                            </p>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <p class="md-body-1 custom-body">
+                                            {{ news.content | limitTo: 180 }}    
+                                            ...
+                                        </p>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab-body>
+                </md-tab>
+
+                <!-- APPLE -->
+                <md-tab md-on-select="vm.get_news('apple')">
+                    <md-tab-label>
+                        <p class="pos-rlt">
+                            <span hide-sm hide-xs show-gt-sm>Apple</span>
+                            <i hide-sm hide-xs show-gt-sm class="refresh fa fa-refresh" ng-click="vm.refresh('apple')"></i>
+                            <i hide-gt-sm class="fa fa-apple"></i>
+                        </p>
+                    </md-tab-label>
+                    <md-tab-body class="md-padding">
+                        <md-content class="md-padding" layout-gt-xs="column" layout-gt-sm="row"  layout-wrap>
+                            <p  ng-show="vm.portals.apple.news.length == 0">Nothing here...</p>
+                            <div class="custom-card" ng-repeat="news in vm.portals.apple.news" flex-gt-sm="25" flex-gt-xs="100" flex-xs="100">
+                                <md-card >
+                                    <div class="custom-card-image">
+                                        <img ng-src="{{ news.urlToImage == null? 'images/noimage.png' : news.urlToImage }}" class="md-card-image">
+                                    </div>
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <p class="custom-title">
+                                                <a class="md-title"  href="{{news.url}}">
+                                                    <span ng-bind="news.title"></span>
+                                                </a>
+                                                <small class="block">
+                                                    Author: 
+                                                    {{ news.author? news.author: "None"}}
+                                                </small>
+                                            </p>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <p class="md-body-1 custom-body">
+                                            {{ news.content | limitTo: 180 }}    
+                                            ...
+                                        </p>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab-body>
+                </md-tab>
+
+                <!-- WALL STREET -->
+                <md-tab md-on-select="vm.get_news('wallstreet')">
+                    <md-tab-label>
+                        <p class="pos-rlt">
+                            <span hide-sm hide-xs show-gt-sm>Wall Street </span>
+                            <i hide-sm hide-xs show-gt-sm class="refresh fa fa-refresh" ng-click="vm.refresh('wallstreet')"></i>
+                            <i hide-gt-sm class="fa fa-building"></i>
+                        </p>
+                    </md-tab-label>
+                    <md-tab-body class="md-padding">
+                        <md-content class="md-padding" layout-gt-xs="column" layout-gt-sm="row"  layout-wrap>
+                            <p ng-show="vm.portals.wallstreet.news.length == 0">Nothing here...</p>
+                            <div class="custom-card" ng-repeat="news in vm.portals.wallstreet.news" flex-gt-sm="25" flex-gt-xs="100" flex-xs="100">
+                                <md-card >
+                                    <div class="custom-card-image">
+                                        <img ng-src="{{ news.urlToImage == null? 'images/noimage.png' : news.urlToImage }}" class="md-card-image">
+                                    </div>
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <p class="custom-title">
+                                                <a class="md-title"  href="{{news.url}}">
+                                                    <span ng-bind="news.title"></span>
+                                                </a>
+                                                <small class="block">
+                                                    Author: 
+                                                    {{ news.author? news.author: "None"}}
+                                                </small>
+                                            </p>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <p class="md-body-1 custom-body">
+                                            {{ news.content | limitTo: 180 }}    
+                                            ...
+                                        </p>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab-body>
+                </md-tab>
+
+            </md-tabs>
+        </md-content>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/bundle.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
